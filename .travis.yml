@@ -24,7 +24,7 @@ script:
     - ./bootstrap
     - ./configure --prefix=/usr
     - make -j4
-    - make install DESTDIR=appdir ; find appdir/
+    - make install DESTDIR=$(readlink -f appdir) ; find appdir/
     - # Dear upstream developer, can you make the Makefile do the next 4 lines?
     - mkdir -p appdir/usr/share/icons/hicolor/48x48/apps/
     - cp contrib/lftp-icon.png appdir/usr/share/icons/hicolor/48x48/apps/
