@@ -37,8 +37,8 @@ after_success:
   - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
   - # Workaround for missing FUSE on pre-trusty Travis CI builders
   - ./linuxdeployqt*.AppImage --appimage-extract
-  - mv squashfs-root/usr/bin/linuxdeployqt .
-  - ./linuxdeployqt --appimage-extract
+  - mv squashfs-root/usr/bin/appimagetool .
+  - ./appimagetool --appimage-extract
   - ./squashfs-root/AppRun ./appdir/usr/share/applications/*.desktop -bundle-non-qt-libs
   - ./squashfs-root/AppRun ./appdir/usr/share/applications/*.desktop -appimage
   - find ./appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
