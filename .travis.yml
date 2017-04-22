@@ -23,8 +23,13 @@ addons:
 script:
     - ./bootstrap
     - ./configure --prefix=/usr
-    - make release-check -j4
+    - make -j4
     - make INSTALL_ROOT=appdir install ; find appdir/
+    - # Dear upstream developer, can you make the Makefile do the next 4 lines?
+    - mkdir -p appdir/usr/share/icons/hicolor/48x48/apps/
+    - cp contrib/lftp-icon.png appdir/usr/share/icons/hicolor/48x48/apps/
+    - mkdir -p appdir/usr/share/applications 
+    - cp contrib/lftp.desktop appdir/usr/share/applications
     
 after_success:
   - wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
